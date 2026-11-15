@@ -6,7 +6,7 @@ import { SystemCard } from './components/SystemCard';
 import { PORTAL_SYSTEMS, type SystemId } from './data/systems';
 
 const STORAGE_KEY_INVENTORY_URL = 'raitai_portal_inventory_custom_url';
-const LOGO_ASSET_PATH = './assets/aistudio/logo-___-_______1c79e6f8.png';
+const LOGO_ASSET_PATH = '/assets/aistudio/logo-___-_______1c79e6f8.png';
 
 export default function App() {
   const [highlightedId, setHighlightedId] = useState<SystemId | null>(null);
