@@ -28,7 +28,7 @@ export const PORTAL_SYSTEMS: PortalSystem[] = [
     category: 'งานสารบรรณและทะเบียนเอกสาร',
     description:
       'ระบบจัดเก็บและบริหารทะเบียนหนังสือรับ หนังสือส่ง คำสั่ง บันทึกข้อความ แบบฟอร์ม และงานฎีกาของกองช่าง',
-    url: 'https://e-saraban-kappa.vercel.app/',
+    url: 'https://e-saraban.vercel.app/',
     ctaLabel: 'เข้าสู่ระบบสารบรรณ',
     accentHex: '#1f5f8b',
     tintHex: '#eaf3fa',
