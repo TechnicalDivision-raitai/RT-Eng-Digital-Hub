@@ -89,16 +89,39 @@ export default function App() {
             aria-label="ทางลัดระบบสารสนเทศ"
             className="hidden md:flex items-center gap-6 text-sm font-medium text-[#475d56]"
           >
-            {PORTAL_SYSTEMS.map((sys) => (
-              <button
-                key={sys.id}
-                type="button"
-                onClick={() => handleJumpToSystem(sys.id)}
-                className="relative py-1 transition-colors hover:text-[#123b35] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123b35] whitespace-nowrap shrink-0"
-              >
-                {sys.shortTitle}
-              </button>
-            ))}
+            {PORTAL_SYSTEMS.map((sys) => {
+              const effectiveUrl =
+                sys.id === 'inventory' ? (sys.url ?? customInventoryUrl) : sys.url;
+
+              if (effectiveUrl) {
+                return (
+                  <a
+                    key={sys.id}
+                    href={effectiveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative py-1 transition-colors hover:text-[#123b35] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123b35] whitespace-nowrap shrink-0"
+                  >
+                    {sys.shortTitle}
+                  </a>
+                );
+              }
+
+              return (
+                <button
+                  key={sys.id}
+                  type="button"
+                  title="รออัพเดตลิงก์ระบบ"
+                  onClick={() => {
+                    handleJumpToSystem(sys.id);
+                    setIsModalOpen(true);
+                  }}
+                  className="relative py-1 transition-colors hover:text-[#123b35] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123b35] whitespace-nowrap shrink-0"
+                >
+                  {sys.shortTitle}
+                </button>
+              );
+            })}
           </nav>
 
           <div className="shrink-0">
