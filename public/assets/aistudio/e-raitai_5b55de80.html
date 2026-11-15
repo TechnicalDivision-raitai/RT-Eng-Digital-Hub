@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123b35">
+  <title>ศูนย์รวมระบบสารสนเทศ | กองช่าง อบต.ไร่ใต้</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-dark: #123b35;
+      --green: #1c5b4e;
+      --gold: #d6b96c;
+      --text: #243b35;
+      --muted: #71817b;
+      --background: #f3f7f5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Sarabun', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 5%, #e8d9aa55, transparent 300px),
+        linear-gradient(180deg, #edf5f1, #f8faf9);
+      min-height: 100vh;
+    }
+
+    .top-line {
+      height: 7px;
+      background: linear-gradient(
+        90deg,
+        #123b35,
+        #d6b96c,
+        #23845b
+      );
+    }
+
+    .container {
+      width: min(1050px, 92%);
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 48px 15px 35px;
+    }
+
+    .logo {
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 18px;
+  background: transparent;
+  border-radius: 0;
+}
+
+    .organization {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      color: var(--green-dark);
+      font-size: clamp(28px, 5vw, 42px);
+      margin: 10px 0;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .gold-line {
+      width: 75px;
+      height: 4px;
+      border-radius: 10px;
+      background: var(--gold);
+      margin: 23px auto 0;
+    }
+
+    main {
+      padding: 20px 0 55px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      color: var(--green-dark);
+      font-size: 23px;
+      margin: 0 0 5px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .systems {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e1eae5;
+      border-radius: 23px;
+      padding: 30px;
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 40px #123b350d;
+      transition: .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 45px #123b351c;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      height: 5px;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--accent);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-box {
+      width: 65px;
+      height: 65px;
+      border-radius: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--tint);
+      color: var(--accent);
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 30px;
+      background: var(--tint);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-size: 23px;
+      color: var(--green-dark);
+      margin: 23px 0 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0 0 25px;
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 49px;
+      border-radius: 12px;
+      color: #fff;
+      background: var(--accent);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: auto;
+      transition: .2s;
+    }
+
+    .button:hover {
+      filter: brightness(1.1);
+    }
+
+    .button span {
+      font-size: 20px;
+    }
+
+    .notice {
+      background: #fffaf0;
+      border: 1px solid #eadfbd;
+      border-radius: 15px;
+      padding: 16px 20px;
+      margin-top: 27px;
+      color: #685b35;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid #e1eae5;
+      text-align: center;
+      padding: 23px 10px 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding-top: 35px;
+      }
+
+      .systems {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 280px;
+        padding: 24px;
+      }
+
+      .card h3 {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-line"></div>
+
+  <div class="container">
+
+    <header>
+      <img
+        src="logo-อบต-ไร่ใต้.png"
+        alt="ตราสัญลักษณ์ อบต.ไร่ใต้"
+        class="logo"
+>
+
+      <div class="organization">
+        RAITAI SUBDISTRICT ADMINISTRATIVE ORGANIZATION
+      </div>
+
+      <h1>ศูนย์รวมระบบสารสนเทศ</h1>
+
+      <p class="subtitle">
+        กองช่าง องค์การบริหารส่วนตำบลไร่ใต้
+      </p>
+
+      <div class="gold-line"></div>
+    </header>
+
+    <main>
+
+      <div class="section-title">
+        <h2>เลือกระบบที่ต้องการใช้งาน</h2>
+        <p>ศูนย์รวมระบบงานของ กองช่าง อบต.ไร่ใต้</p>
+      </div>
+
+      <div class="systems">
+
+        <!-- ระบบสารบรรณ -->
+        <section class="card"
+          style="--accent:#286b9b; --tint:#eaf3fa;">
+
+          <div class="card-header">
+            <div class="icon-box">📚</div>
+            <span class="tag">DOCUMENT MANAGEMENT</span>
+          </div>
+
+          <h3>ระบบสารบรรณอิเล็กทรอนิกส์</h3>
+
+          <p>
+            ระบบจัดเก็บและบริหารทะเบียนหนังสือรับ
+            หนังสือส่ง คำสั่ง บันทึกข้อความ แบบฟอร์ม
+            และงานฎีกาของกองช่าง
+          </p>
+
+          <a class="button"
+             href="https://technicaldivision-raitai.github.io/e-saraban-raitai/"
+             target="_blank"
+             rel="noopener noreferrer">
+            เข้าสู่ระบบ E-SARABAN
+            <span>↗</span>
+          </a>
+
+        </section>
+
+        <!-- ระบบ E-project -->
+        <section class="card"
+          style="--accent:#23845b; --tint:#e9f6ef;">
+
+          <div class="card-header">
+            <div class="icon-box">🏗️</div>
+            <span class="tag">ENGINEERING PROJECT</span>
+          </div>
+
+          <h3>ระบบบริหารจัดการงานโครงการ</h3>
+
+          <p>
+            ระบบบริหารจัดการข้อมูลโครงการ
+            งบประมาณ สัญญาจ้าง การตรวจรับ
+            และการเบิกจ่ายของกองช่าง
+          </p>
+
+          <a class="button"
+             href="https://e-raitai.vercel.app/"
+             target="_blank"
+             rel="noopener noreferrer">
+            เข้าสู่ระบบ E-PROJECT
+            <span>↗</span>
+          </a>
+
+        </section>
+
+      </div>
+
+      <div class="notice">
+        <strong>หมายเหตุ:</strong>
+        หน้าเว็บไซต์นี้เป็นศูนย์รวมลิงก์เข้าสู่ระบบของ 
+        กองช่าง องค์การบริหารส่วนตำบลไร่ใต้
+      </div>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span>
+      กองช่าง องค์การบริหารส่วนตำบลไร่ใต้
+      <br>
+      ศูนย์รวมระบบสารสนเทศ
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>

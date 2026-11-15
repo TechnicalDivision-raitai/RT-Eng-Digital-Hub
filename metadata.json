@@ -1,0 +1,6 @@
+{
+  "name": "ศูนย์รวมระบบสารสนเทศ กองช่าง อบต.ไร่ใต้",
+  "description": "ศูนย์รวมลิงก์เข้าสู่ระบบสารสนเทศ กองช่าง องค์การบริหารส่วนตำบลไร่ใต้ (ระบบสารบรรณ บริหารโครงการ จัดซื้อจัดจ้าง และคุมพัสดุ)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
