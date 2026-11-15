@@ -76,11 +76,11 @@ export const PORTAL_SYSTEMS: PortalSystem[] = [
     category: 'งานทะเบียนคุมพัสดุและครุภัณฑ์',
     description:
       'ระบบทะเบียนคุมพัสดุ ครุภัณฑ์ การเบิก-จ่ายวัสดุคงคลัง และการตรวจสอบพัสดุประจำปีของกองช่าง อบต.ไร่ใต้',
-    url: null,
-    ctaLabel: 'รออัพเดตลิงก์ระบบ',
-    accentHex: '#4b5e58',
-    tintHex: '#eef2f0',
-    defaultStatus: 'pending',
+    url: 'https://e-inventory-beta.vercel.app/',
+    ctaLabel: 'เข้าสู่ระบบคุมพัสดุ',
+    accentHex: '#0f6b63',
+    tintHex: '#e7f5f3',
+    defaultStatus: 'active',
     scopeItems: ['ทะเบียนคุมครุภัณฑ์', 'รับ-จ่ายวัสดุคงคลัง', 'รายงานตรวจนับประจำปี'],
   },
 ];

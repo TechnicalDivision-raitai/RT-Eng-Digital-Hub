@@ -1,37 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Check, Info, Share2 } from 'lucide-react';
 import { Emblem } from './components/Emblem';
-import { PendingLinkModal } from './components/PendingLinkModal';
 import { SystemCard } from './components/SystemCard';
 import { PORTAL_SYSTEMS, type SystemId } from './data/systems';
 
-const STORAGE_KEY_INVENTORY_URL = 'raitai_portal_inventory_custom_url';
-const LOGO_ASSET_PATH = './assets/aistudio/logo-___-_______1c79e6f8.png';
+const LOGO_ASSET_PATH = '/assets/aistudio/logo-___-_______1c79e6f8.png';
 
 export default function App() {
   const [highlightedId, setHighlightedId] = useState<SystemId | null>(null);
   const [portalCopied, setPortalCopied] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [logoLoadError, setLogoLoadError] = useState(false);
-  const [customInventoryUrl, setCustomInventoryUrl] = useState<string | null>(() => {
-    try {
-      return window.localStorage.getItem(STORAGE_KEY_INVENTORY_URL);
-    } catch {
-      return null;
-    }
-  });
-
-  useEffect(() => {
-    try {
-      if (customInventoryUrl) {
-        window.localStorage.setItem(STORAGE_KEY_INVENTORY_URL, customInventoryUrl);
-      } else {
-        window.localStorage.removeItem(STORAGE_KEY_INVENTORY_URL);
-      }
-    } catch {
-      // Ignore storage failures in restricted browsing contexts
-    }
-  }, [customInventoryUrl]);
 
   const handleJumpToSystem = (id: SystemId) => {
     setHighlightedId(id);
@@ -89,39 +67,28 @@ export default function App() {
             aria-label="ทางลัดระบบสารสนเทศ"
             className="hidden md:flex items-center gap-6 text-sm font-medium text-[#475d56]"
           >
-            {PORTAL_SYSTEMS.map((sys) => {
-              const effectiveUrl =
-                sys.id === 'inventory' ? (sys.url ?? customInventoryUrl) : sys.url;
-
-              if (effectiveUrl) {
-                return (
-                  <a
-                    key={sys.id}
-                    href={effectiveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative py-1 transition-colors hover:text-[#123b35] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123b35] whitespace-nowrap shrink-0"
-                  >
-                    {sys.shortTitle}
-                  </a>
-                );
-              }
-
-              return (
+            {PORTAL_SYSTEMS.map((sys) =>
+              sys.url ? (
+                <a
+                  key={sys.id}
+                  href={sys.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative py-1 transition-colors hover:text-[#123b35] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123b35] whitespace-nowrap shrink-0"
+                >
+                  {sys.shortTitle}
+                </a>
+              ) : (
                 <button
                   key={sys.id}
                   type="button"
-                  title="รออัพเดตลิงก์ระบบ"
-                  onClick={() => {
-                    handleJumpToSystem(sys.id);
-                    setIsModalOpen(true);
-                  }}
+                  onClick={() => handleJumpToSystem(sys.id)}
                   className="relative py-1 transition-colors hover:text-[#123b35] hover:underline hover:underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#123b35] whitespace-nowrap shrink-0"
                 >
                   {sys.shortTitle}
                 </button>
-              );
-            })}
+              ),
+            )}
           </nav>
 
           <div className="shrink-0">
@@ -185,11 +152,7 @@ export default function App() {
               <SystemCard
                 key={sys.id}
                 system={sys}
-                customUrl={sys.id === 'inventory' ? customInventoryUrl : null}
                 isHighlighted={highlightedId === sys.id}
-                onConfigurePendingLink={
-                  sys.id === 'inventory' ? () => setIsModalOpen(true) : undefined
-                }
               />
             ))}
           </div>
@@ -204,12 +167,8 @@ export default function App() {
             <Info className="mt-0.5 sm:mt-0 h-4 w-4 shrink-0 text-[#8b6914]" aria-hidden="true" />
             <p>
               <strong className="font-bold text-[#3f3518]">หมายเหตุ:</strong>{' '}
-              ศูนย์รวมลิงก์เข้าสู่ระบบสารสนเทศของ กองช่าง อบต.ไร่ใต้ ·{' '}
-              ระบบสารบรรณ บริหารโครงการ และจัดซื้อจัดจ้าง พร้อมใช้งานแล้ว ส่วน{' '}
-              <strong className="font-semibold text-[#3f3518]">ระบบคุมพัสดุ</strong>{' '}
-              {customInventoryUrl
-                ? 'กำลังใช้งานลิงก์ชั่วคราวที่บันทึกไว้ในเครื่องนี้'
-                : 'อยู่ระหว่างรออัพเดตลิงก์เข้าใช้งานอย่างเป็นทางการ'}
+              หน้าเว็บไซต์นี้เป็นศูนย์รวมลิงก์เข้าสู่ระบบสารสนเทศของ กองช่าง อบต.ไร่ใต้ ·{' '}
+              ระบบสารบรรณ บริหารโครงการ จัดซื้อจัดจ้าง และคุมพัสดุ พร้อมเปิดให้ใช้งานครบทั้ง 4 ระบบแล้ว
             </p>
           </div>
         </section>
@@ -224,13 +183,6 @@ export default function App() {
           <p>ศูนย์รวมระบบสารสนเทศ · กองช่าง อบต.ไร่ใต้</p>
         </div>
       </footer>
-
-      <PendingLinkModal
-        isOpen={isModalOpen}
-        currentUrl={customInventoryUrl}
-        onClose={() => setIsModalOpen(false)}
-        onSave={setCustomInventoryUrl}
-      />
     </div>
   );
 }
